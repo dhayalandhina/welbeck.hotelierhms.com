@@ -274,7 +274,7 @@ class Transaction extends CI_Controller
 			if ($ch1['toroomid'] != 0)
 			 {
 
-			   $stqry = "SELECT * from room_status where roomid = '".$ch1['toroomid']." and isnull(status,'') ='Y' and isnull(billsettle,0) = 0";
+			   $stqry = "SELECT * from room_status where roomid = '".$ch1['toroomid']."' and isnull(status,'') ='Y' and isnull(billsettle,0) = 0";
 			    $exst = $this->db->query($stqry)->row_array();
 				$strqrycount = count($exst);
                     if($strqrycount != 0)
@@ -296,7 +296,7 @@ class Transaction extends CI_Controller
 					}
 
 				// $delete1 = "delete  from trans_credit_entry where Roomid='" . $ch1['toroomid'] . "'";
-				$delete1 = "delete  from trans_credit_entry where roomid='".$ch1['toroomid']."' and  roomgrcid ='".$roomgrcid."' and creditheadid = '".$Creditheadid."' and creditdate = '".date_format(m-d-Y,$checkoutdate)."'";
+				$delete1 = "delete  from trans_credit_entry where roomid='".$ch1['toroomid']."' and  roomgrcid ='".$roomgrcid."' and creditheadid = '".$Creditheadid."' and creditdate = '".date('Y-m-d', strtotime($checkoutdate))."'";
 				// $res = $this->db->query($delete1);
 
 					}
@@ -337,7 +337,7 @@ $toroompay = '';
 					$toroompay = "TOROOM";
 					$check = "select * from trans_checkout_mas cm
 							inner join trans_roomdet_det det on
-							det.romgrcid = cm.roomgrcid 
+							det.roomgrcid = cm.roomgrcid
 							inner join mas_room ms on ms.Room_id = cm.roomid
 							where Checkoutid='" . $_REQUEST['idv'] . "'  ";
 					 $exch = $this->db->query($check);
@@ -359,7 +359,7 @@ $toroompay = '';
 						$Creditheadid1 = $row1['Revenue_Id'];
 					}
 					$sq1 = " SELECT Revenue_Id FROM Mas_Revenue WHERE HeadCode ='TDR'";
-					$exsq = $this->db->query($sq);
+					$exsq = $this->db->query($sq1);
 					foreach ($exsq->result_array() as $row1) {
 						$Creditheadid2 = $row1['Revenue_Id'];
 					}
