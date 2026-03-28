@@ -58,11 +58,12 @@ class ReinstateNoShows extends CI_Model
 			$Indate = date ("Y/m/d", strtotime("+1 day", strtotime($Indate)));
 		}				
 	  
+		ob_start();
 		echo "BEGIN Try ";
 		echo "BEGIN Transaction ";
 		echo "BEGIN Tran ";
 		echo "Declare @Siden INT; ";
-		echo $sql3;				
+		echo $sql3;
 		echo "set @Siden=@@identity; ";
 	    echo $sql;
 		echo $sql1;
