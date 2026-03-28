@@ -51,7 +51,7 @@ function AdvanceResettlement_Val()
         $payResult = $this->db->query($payQuery); 
         $prow = $payResult->row_array();
         $payid = $prow['PayMode_Id'] ?? 0;
-		$curr = date("m-d-Y");
+		$curr = date("Y-m-d");
        $currtime = date("H:i:s");
 
            	$qry="Update Trans_Receipt_mas set amount = '".$_REQUEST['Advance']."',paymodeid='". $payid."',bank='". $_REQUEST['bank']  ."',cardnumber='".$_REQUEST['cardnumber']."',validdate='".$_REQUEST['validate']."',edituserid=".User_id.",editdate='".$curr."',edittime='".$currtime."' where Receiptid='".$_REQUEST['idv']."'";	
