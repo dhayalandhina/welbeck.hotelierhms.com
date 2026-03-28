@@ -49,10 +49,10 @@ class Reservation extends CI_Model
 	 for ($a = 0; $a < count($_REQUEST["ID"]); $a++)
 	 {
 		$Indate = str_replace('/', '-', $_REQUEST['Arrivaldate'][$a]);
-	    $Indate=date('Y/m/d', strtotime($Indate));
+	    $Indate=date('Y-m-d', strtotime($Indate));
 	    $Indate1=date('m/d/Y', strtotime($Indate));
 	    $todate = str_replace('/', '-', $_REQUEST['Departuredate'][$a]);
-	    $todate=date('Y/m/d', strtotime($todate));
+	    $todate=date('Y-m-d', strtotime($todate));
 		
 		$sql3="SELECT * FROM Mas_Room rm
 		Inner join Mas_Roomtype rt on rt.RoomType_Id=rm.RoomType_Id
@@ -80,9 +80,10 @@ class Reservation extends CI_Model
 		{		
 	     $ins3=$ins3."Insert into Trans_reserve_det1(resdate,typeid,noofrooms,fromtime,totime,refresdetid,fromdate,todate,ratetypeid)
 		 values('".$Indate."','".$_REQUEST['Roomtype'][$a]."','1',convert(VARCHAR,getdate(),108),convert(VARCHAR,getdate(),108),@Siden1,'".$fromdate."','".$todate."','".$_REQUEST['Ratetype'][$a]."')";
-         $Indate = date ("Y/m/d", strtotime("+1 day", strtotime($Indate)));
+         $Indate = date ("Y-m-d", strtotime("+1 day", strtotime($Indate)));
 		} 
 		$sel="SELECT 'Successfully Updated' AS MGS";
+		ob_start();
 		echo "BEGIN Try ";
 		echo "BEGIN Transaction ";
 		echo "BEGIN Tran ";
