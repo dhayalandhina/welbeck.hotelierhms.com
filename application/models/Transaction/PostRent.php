@@ -33,7 +33,7 @@ class PostRent extends CI_Model
 		$res=$this->db->query($sql);
 		foreach ($res->result_array() as $row)
 		{ $auditdate=$row['DateofAudit']; } 
-        $creditdate=date('Y-m-d',strtotime($auditdate.'+1 days'));		
+        $creditdate=date('Y-m-d',strtotime('+1 day', strtotime($auditdate)));
 	    $qry="exec Exec_NightAudit '".$auditdate."',".User_id."";
 		$res=$this->db->query($qry);
 		$msg=$this->db->error(); 
