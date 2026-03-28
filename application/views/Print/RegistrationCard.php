@@ -569,6 +569,8 @@ Late departure can be arranged on request through the management, subject to roo
 $this->pfrm->FrmFoot();
 $this->pweb->wfoot();
 $this->pcss->wjs($F_Ctrl);
+$this->licscript->LicenPopUp($this->Myclass);
+$this->licscript->LicFooter();
 ?>
 <SCRIPT language="javascript">
 function printExact() {
